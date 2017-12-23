@@ -11,6 +11,7 @@ import {purple, white} from '../utils/colors'
 import { addDeck } from '../actions'
 import { saveDeckTitle} from '../utils/api'
 import { NavigationActions } from 'react-navigation'
+import { connect } from 'react-redux'
 
 class AddDeck extends Component {
 
@@ -23,9 +24,10 @@ class AddDeck extends Component {
 
     submit = () => {
   
-        const entry = this.state
+        const newDeckTitle = this.state.deckTitle;
+        this.props.dispatch(addDeck(newDeckTitle))
          this.toHome()
-         saveDeckTitle(entry)
+         saveDeckTitle(newDeckTitle)
          this.setState(() => ({ deckTitle: '' }))
     }
 
@@ -94,4 +96,14 @@ const styles = StyleSheet.create({
     }
 })
 
-export default AddDeck;
+function mapStateToProps (state) {
+    
+  
+    return {
+        state
+    }
+  }
+  
+  export default connect(
+    mapStateToProps
+  )(AddDeck)
