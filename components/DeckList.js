@@ -1,12 +1,13 @@
 import React, {Component} from 'react'
-import { View, Text} from 'react-native'
+import { View, Text,StyleSheet,Platform} from 'react-native'
 import { getDecks } from '../utils/api'
+import { white } from '../utils/colors'
 
 class DeckList extends Component {
 
     state = {
-        decks: {
-            React: {
+        decks: [
+            {
               title: 'React',
               questions: [
                 {
@@ -19,7 +20,7 @@ class DeckList extends Component {
                 }
               ]
             },
-            JavaScript: {
+            {
               title: 'JavaScript',
               questions: [
                 {
@@ -28,22 +29,23 @@ class DeckList extends Component {
                 }
               ]
             }
-          }
+          ]
     }
 
     componentDidMount(){
        /* getDecks().then((decks)=> {
              this.setState(decks);
         });*/
-        console.log("decks:" + JSON.stringify(this.state.decks));
+   
 
     }
 
     render() {
+      console.log("state" + JSON.stringify(this.state.decks));
         return (
-            <View style={styles.deck}>
+            <View style={{backgroundColor: '#f4f4f4'}}>
                 {this.state.decks.map(deck =>(
-                    <View>
+                    <View key={deck.title} style={styles.deck}>
                         <Text>{deck.title}</Text>
                     </View>
                 ))
