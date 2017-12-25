@@ -8,6 +8,7 @@ import {Constants} from 'expo'
 import {TabNavigator,StackNavigator} from 'react-navigation'
 import DeckList from './components/DeckList'
 import AddDeck from './components/AddDeck'
+import DeckDetail from './components/DeckDetail'
 
 export default class App extends React.Component {
   render() {
@@ -17,7 +18,7 @@ export default class App extends React.Component {
           flex: 1
         }}>
           <UdaciStatusBar backgroundColor={purple} barStyle="light-content"/>
-          <Tabs/>
+          <MainNavigator/>
         </View>
       </Provider>
     );
@@ -68,6 +69,15 @@ const Tabs = TabNavigator({
 const MainNavigator = StackNavigator({
   Home: {
     screen: Tabs
+  },
+  DeckDetail: {
+    screen: DeckDetail,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: purple,
+      }
+    }
   }
 })
 

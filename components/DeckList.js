@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, Platform } from 'react-native'
+import { View, Text, StyleSheet, Platform,TouchableOpacity } from 'react-native'
 import { getDecks } from '../utils/api'
 import { white } from '../utils/colors'
 import { connect } from 'react-redux'
@@ -32,17 +32,21 @@ class DeckList extends Component {
             console.log("deck:" + JSON.stringify(deck));
 
             return (
-
               <View key={deckKey} style={styles.deck}>
-                <Text style={{ textAlign: 'center', fontWeight: 'bold' }}>{deck.title}</Text>
-                {<Text style={{ textAlign: 'center' }}>{deck.questions.length} cards</Text>}
-              </View>)
+              <TouchableOpacity onPress={() => this.props.navigation.navigate(
+                'DeckDetail',
+                { deckKey: deckKey }
+              )}>
+               
+
+                  <Text style={{ textAlign: 'center', fontWeight: 'bold' }}>{deck.title}</Text>
+                  <Text style={{ textAlign: 'center' }}>{deck.questions.length} cards</Text>
+              </TouchableOpacity>
+                </View>
+            )
           })}
-
       </View>
-
     )
-
   }
 }
 
