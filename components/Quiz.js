@@ -13,7 +13,11 @@ import { NavigationActions } from 'react-navigation'
 import { connect } from 'react-redux'
 
 class Quiz extends Component {
-
+    render(){
+        return (
+            <Text> in Quiz</Text>
+        )
+    }
 
 }
 
