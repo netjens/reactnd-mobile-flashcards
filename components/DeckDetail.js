@@ -53,10 +53,10 @@ const styles = StyleSheet.create({
         marginRight: 10,
         marginTop: 20,
         textAlign: 'center',
-        fontSize: 40
+        fontSize: 50
     },
     subTitle: {
-        fontSize: 20,
+        fontSize: 30,
         color: 'gray',
         textAlign: 'center'
     },
