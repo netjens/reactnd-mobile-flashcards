@@ -59,9 +59,7 @@ class AddDeck extends Component {
 function SubmitBtn({onPress}) {
     return (
         <TouchableOpacity
-            style={Platform.OS === 'ios'
-            ? styles.iosSubmitBtn
-            : styles.AndroidSubmitBtn}
+            style={styles.AndroidSubmitBtn}
             onPress={onPress}>
             <Text style={styles.submitBtnText}>SUBMIT</Text>
         </TouchableOpacity>
@@ -70,24 +68,17 @@ function SubmitBtn({onPress}) {
 
 const styles = StyleSheet.create({
 
-    iosSubmitBtn: {
-        backgroundColor: purple,
-        padding: 10,
-        borderRadius: 7,
-        height: 45,
-        marginLeft: 40,
-        marginRight: 40
-    },
     AndroidSubmitBtn: {
         backgroundColor: purple,
+        marginTop: 30,
         padding: 10,
         paddingLeft: 30,
         paddingRight: 30,
         height: 45,
         borderRadius: 2,
-        alignSelf: 'flex-end',
-        justifyContent: 'center',
-        alignItems: 'center'
+        alignSelf: 'center',
+        justifyContent: 'center'
+        
     },
     submitBtnText: {
         color: white,
