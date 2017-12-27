@@ -29,7 +29,7 @@ class DeckDetail extends Component {
                 <View style={{ flex: 1, justifyContent: 'flex-end', alignItems: 'center'}}> 
                     <TouchableOpacity
                         style={styles.button}
-                        onPress={() => this.props.navigation.navigate('AddCard')}>
+                        onPress={() => this.props.navigation.navigate('AddCard',{deckKey: deck.title})}>
                         <Text style={styles.buttonText}>Add Card</Text>
                     </TouchableOpacity>
                     <TouchableOpacity

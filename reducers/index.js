@@ -1,4 +1,4 @@
-import {ADD_DECK} from '../actions'
+import {ADD_DECK,ADD_CARD} from '../actions'
 
 function decks(state = {}, action) {
     switch (action.type) {
@@ -6,6 +6,12 @@ function decks(state = {}, action) {
             return {
                 ...state,
                 [action.title]: {title : action.title,questions : []}
+            }
+        case ADD_CARD: 
+            const deckKey = action.deckKey;
+            console.log("im reducer..." + action.card);
+            return {
+                ...state,[deckKey]:{title: deckKey,questions: [...state[deckKey].questions,action.card]}
             }
 
         default:
