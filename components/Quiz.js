@@ -17,18 +17,24 @@ class Quiz extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            indexCurrentQuestion: 0
+            currentIndex: 0
         };
     }
 
 
     render() {
         const deck = this.props.deck;
+        const {currentIndex} = this.state;
+
+        console.log("currentIndex = " + currentIndex);
+        console.log("dekc: " + deck);
         return (
             <View style={{
                 padding: 10
             }}>
-                <Text>{this.state.indexCurrentQuestion+1}/{deck.questions.length}</Text>
+                <Text>{currentIndex+1}/{deck.questions.length}</Text>
+
+                <Text>{deck.questions.length > 0 && deck.questions[currentIndex].question}</Text>
             </View>
         )
     }
