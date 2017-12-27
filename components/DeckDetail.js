@@ -34,7 +34,7 @@ class DeckDetail extends Component {
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={styles.button}
-                        onPress={() => this.props.navigation.navigate('Quiz')}>
+                        onPress={() => this.props.navigation.navigate('Quiz',{deckKey: deck.title})}>
                         <Text style={styles.buttonText}>Start Quiz</Text>
                     </TouchableOpacity>
 
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
 function mapStateToProps(state, { navigation }) {
     const { deckKey } = navigation.state.params;
     const deck = state[deckKey];
-    console.log("in stateToProps=" + JSON.stringify(deck));
+
     return (
         { deck: deck });
 
