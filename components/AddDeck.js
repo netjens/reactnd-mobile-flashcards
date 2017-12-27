@@ -12,6 +12,7 @@ import { addDeck } from '../actions'
 import { saveDeckTitle} from '../utils/api'
 import { NavigationActions } from 'react-navigation'
 import { connect } from 'react-redux'
+import SubmitButton from './SubmitButton'
 
 class AddDeck extends Component {
 
@@ -49,43 +50,14 @@ class AddDeck extends Component {
                
                 }}
                     placeholder="Deck Title"/>
-                <SubmitBtn onPress={this.submit}/>
+                <SubmitButton onPress={this.submit}/>
             </View>
         )
     }
 
 }
 
-function SubmitBtn({onPress}) {
-    return (
-        <TouchableOpacity
-            style={styles.AndroidSubmitBtn}
-            onPress={onPress}>
-            <Text style={styles.submitBtnText}>SUBMIT</Text>
-        </TouchableOpacity>
-    )
-}
 
-const styles = StyleSheet.create({
-
-    AndroidSubmitBtn: {
-        backgroundColor: purple,
-        marginTop: 30,
-        padding: 10,
-        paddingLeft: 30,
-        paddingRight: 30,
-        height: 45,
-        borderRadius: 2,
-        alignSelf: 'center',
-        justifyContent: 'center'
-        
-    },
-    submitBtnText: {
-        color: white,
-        fontSize: 22,
-        textAlign: 'center'
-    }
-})
 
 function mapStateToProps (state) {
     
