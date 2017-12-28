@@ -33,7 +33,8 @@ class DeckDetail extends Component {
                         <Text style={styles.buttonText}>Add Card</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
-                        style={styles.button}
+                        disabled={deck.questions.length==0}
+                        style={deck.questions.length==0 ? styles.buttonDisabled : styles.button}
                         onPress={() => this.props.navigation.navigate('Quiz',{deckKey: deck.title})}>
                         <Text style={styles.buttonText}>Start Quiz</Text>
                     </TouchableOpacity>
@@ -70,6 +71,16 @@ const styles = StyleSheet.create({
         height: 45,
         borderRadius: 5,
     },  
+    buttonDisabled: {
+
+        backgroundColor: 'gray',
+        padding: 10,
+        marginBottom: 30,
+        paddingLeft: 30,
+        paddingRight: 30,
+        height: 45,
+        borderRadius: 5,
+    }, 
     buttonText: {
         color: white,
         fontSize: 22,
