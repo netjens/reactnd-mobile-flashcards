@@ -15,6 +15,7 @@ import { NavigationActions } from 'react-navigation'
 import { connect } from 'react-redux'
 import TextButton from './TextButton'
 import Button from './Button'
+import { Entypo } from '@expo/vector-icons'
 
 
 class Quiz extends Component {
@@ -37,9 +38,11 @@ class Quiz extends Component {
     render() {
         const deck = this.props.deck;
         const { currentIndex } = this.state;
+        const percentage = this.getPercentageOfCorrectAnswers(deck.questions.length);
 
-        console.log("currentIndex = " + currentIndex);
-        console.log("dekc: " + JSON.stringify(deck));
+        const emojiName =  (percentage >= 80) ? 'emoji-happy' : 
+        (percentage >= 50) ? 'emoji-neutral' : 'emoji-sad';
+
         return (
             currentIndex < deck.questions.length ?
                 <FlipView style={{ flex: 1 }}
@@ -51,10 +54,24 @@ class Quiz extends Component {
                     flipEasing={Easing.out(Easing.ease)}
                     flipDuration={500}
                     perspective={1000} />
-                : <View><Text>Correct Answers from {deck.questions.length} Questions: {this.state.correctAnswers}</Text></View>
+                : <View style={styles.center}>
+                     <Entypo
+                        name={emojiName}
+                        size={50}
+                        color={purple}
+                    /> 
+
+                    <Text style={{ fontSize: 30 }}>Your score: {percentage}%</Text>
+                </View>
 
         )
     }
+
+    getPercentageOfCorrectAnswers = (numberOfCards) => {
+        const percentage = this.state.correctAnswers / numberOfCards;
+        return (percentage * 100).toFixed(0);
+    }
+
     renderFrontCard = (deck, currentIndex) => {
         return (
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -115,6 +132,13 @@ const styles = StyleSheet.create({
         paddingRight: 30,
         height: 45,
         borderRadius: 5,
+    },
+    center: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginLeft: 30,
+        marginRight: 30,
     }
 }
 );
