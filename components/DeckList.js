@@ -17,7 +17,6 @@ class DeckList extends Component {
   }
 
   render() {
-    console.log("decks state in DeckList:" + JSON.stringify(this.props.decks));
     return (
       <View style={{
         backgroundColor: '#f4f4f4', flex: 1,
@@ -29,7 +28,6 @@ class DeckList extends Component {
         {this.props.decks &&
           Object.keys(this.props.decks).map((deckKey) => {
             const deck = this.props.decks[deckKey];
-            console.log("deck:" + JSON.stringify(deck));
 
             return (
               <View key={deckKey} style={styles.deck}>

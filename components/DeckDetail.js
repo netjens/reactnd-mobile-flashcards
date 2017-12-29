@@ -8,7 +8,6 @@ import { white,purple } from '../utils/colors'
 class DeckDetail extends Component {
 
     static navigationOptions = ({ navigation }) => {
-      console.log(JSON.stringify(navigation))
         return {
           title: navigation.state.params.deckKey
         }

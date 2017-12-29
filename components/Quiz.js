@@ -49,7 +49,6 @@ class Quiz extends Component {
                     front={this.renderFrontCard(deck, currentIndex)}
                     back={this.renderBackCard(deck, currentIndex)}
                     isFlipped={this.state.isFlipped}
-                    onFlipped={(val) => { console.log('Flipped: ' + val); }}
                     flipAxis="y"
                     flipEasing={Easing.out(Easing.ease)}
                     flipDuration={500}

@@ -9,7 +9,6 @@ function decks(state = {}, action) {
             }
         case ADD_CARD: 
             const deckKey = action.deckKey;
-            console.log("im reducer..." + action.card);
             return {
                 ...state,[deckKey]:{title: deckKey,questions: [...state[deckKey].questions,action.card]}
             }
