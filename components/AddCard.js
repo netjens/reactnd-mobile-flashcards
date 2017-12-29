@@ -13,6 +13,7 @@ import { NavigationActions } from 'react-navigation'
 import { connect } from 'react-redux'
 import { addCard } from '../actions'
 import SubmitButton from './SubmitButton'
+import {saveCardToDeck} from '../utils/api'
 
 class AddCard extends Component {
     constructor(props) {
@@ -26,8 +27,9 @@ class AddCard extends Component {
     submit = () => {
   
         const deckKey = this.props.navigation.state.params.deckKey;
-        this.props.dispatch(addCard(deckKey, {question: this.state.question, answer: this.state.answer}))
-    
+        const card = {question: this.state.question, answer: this.state.answer}
+        this.props.dispatch(addCard(deckKey, card));
+        saveCardToDeck(deckKey,card);
     
          this.setState(() => ({ question: '', answer: '' }))
     }

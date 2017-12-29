@@ -3,17 +3,18 @@ import { View, Text, StyleSheet, Platform,TouchableOpacity } from 'react-native'
 import { getDecks } from '../utils/api'
 import { white } from '../utils/colors'
 import { connect } from 'react-redux'
+import { addDecks } from '../actions'
 
 class DeckList extends Component {
 
 
 
   componentDidMount() {
-    /*getDecks().then((decks)=> {
-         this.setState(decks);
-    });*/
-
-
+    getDecks().then((decks)=> {
+        console.log("decks=" + JSON.stringify(decks));
+        this.props.dispatch(addDecks(decks));
+  
+    });
   }
 
   render() {

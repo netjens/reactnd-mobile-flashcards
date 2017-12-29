@@ -26,7 +26,7 @@ class AddDeck extends Component {
     submit = () => {
   
         const newDeckTitle = this.state.deckTitle;
-        this.props.dispatch(addDeck(newDeckTitle))
+        this.props.dispatch(addDeck({title: newDeckTitle, questions:[]}));
          this.toHome()
          saveDeckTitle(newDeckTitle)
          this.setState(() => ({ deckTitle: '' }))
