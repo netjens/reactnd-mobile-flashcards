@@ -40,8 +40,8 @@ class Quiz extends Component {
         const { currentIndex } = this.state;
         const percentage = this.getPercentageOfCorrectAnswers(deck.questions.length);
 
-        const emojiName =  (percentage >= 80) ? 'emoji-happy' : 
-        (percentage >= 50) ? 'emoji-neutral' : 'emoji-sad';
+        const emojiName = (percentage >= 80) ? 'emoji-happy' :
+            (percentage >= 50) ? 'emoji-neutral' : 'emoji-sad';
 
         return (
             currentIndex < deck.questions.length ?
@@ -55,11 +55,11 @@ class Quiz extends Component {
                     flipDuration={500}
                     perspective={1000} />
                 : <View style={styles.center}>
-                     <Entypo
+                    <Entypo
                         name={emojiName}
                         size={50}
                         color={purple}
-                    /> 
+                    />
 
                     <Text style={{ fontSize: 30 }}>Your score: {percentage}%</Text>
                 </View>
@@ -74,11 +74,11 @@ class Quiz extends Component {
 
     renderFrontCard = (deck, currentIndex) => {
         return (
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+            <View style={{ flex: 1, justifyContent: 'space-around', alignItems: 'center' }}>
 
-                <Text>{currentIndex + 1}/{deck.questions.length}</Text>
-                <Text>{deck.questions.length > 0 && deck.questions[currentIndex].question}</Text>
-                <TextButton style={{ padding: 10, fontSize: 30 }} onPress={this.flip}>Answer</TextButton>
+                <Text style={{ fontSize: 20 }}>Question {currentIndex + 1} of {deck.questions.length}</Text>
+                <Text style={styles.questionText}>{deck.questions.length > 0 && deck.questions[currentIndex].question}</Text>
+                <TextButton style={{ fontSize: 30 }} onPress={this.flip}>Answer</TextButton>
 
             </View>
         );
@@ -86,13 +86,15 @@ class Quiz extends Component {
 
     renderBackCard = (deck, currentIndex) => {
         return (
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+            <View style={{ flex: 1, justifyContent: 'space-around', alignItems: 'center' }}>
 
-                <Text>{currentIndex + 1}/{deck.questions.length}</Text>
-                <Text>{deck.questions[currentIndex].answer}</Text>
+                <Text style={{ fontSize: 20 }}>Question {currentIndex + 1} of {deck.questions.length}</Text>
+                <Text style={styles.questionText}>{deck.questions[currentIndex].answer}</Text>
                 <TextButton style={{ padding: 10, fontSize: 30 }} onPress={this.flip}>Question</TextButton>
-                <Button style={{ backgroundColor: 'green' }} onPress={this.correctAnswer}>Correct</Button>
-                <Button style={{ backgroundColor: 'red' }} onPress={this.incorrectAnswer}>Incorrect</Button>
+                <View>
+                    <Button style={{ backgroundColor: 'green' }} onPress={this.correctAnswer}>Correct</Button>
+                    <Button style={{ backgroundColor: 'red' }} onPress={this.incorrectAnswer}>Incorrect</Button>
+                </View>
 
             </View>
         );
@@ -139,6 +141,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginLeft: 30,
         marginRight: 30,
+    },
+    questionText: {
+         fontSize: 30, fontStyle: 'italic',padding: 10 
     }
 }
 );
