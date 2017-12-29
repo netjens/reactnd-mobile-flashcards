@@ -59,11 +59,19 @@ class Quiz extends Component {
                         size={50}
                         color={purple}
                     />
-
                     <Text style={{ fontSize: 30 }}>Your score: {percentage}%</Text>
+                    <Button style={{ backgroundColor: purple,marginTop: 30 }} onPress={this.restartQuiz}>Restart Quiz</Button>
                 </View>
-
         )
+    }
+
+    restartQuiz = () => {
+        this.setState({
+
+            currentIndex: 0,
+            correctAnswers: 0,
+            isFlipped: false
+        });
     }
 
     getPercentageOfCorrectAnswers = (numberOfCards) => {
@@ -142,7 +150,7 @@ const styles = StyleSheet.create({
         marginRight: 30,
     },
     questionText: {
-         fontSize: 30, fontStyle: 'italic',padding: 10 
+        fontSize: 30, fontStyle: 'italic', padding: 10
     }
 }
 );
