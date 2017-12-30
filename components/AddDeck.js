@@ -1,15 +1,16 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import {
     View,
     Text,
     TextInput,
     TouchableOpacity,
     Platform,
-    StyleSheet
+    StyleSheet,
+    Alert
 } from 'react-native'
-import {purple, white} from '../utils/colors'
+import { purple, white } from '../utils/colors'
 import { addDeck } from '../actions'
-import { saveDeckTitle} from '../utils/api'
+import { saveDeckTitle } from '../utils/api'
 import { NavigationActions } from 'react-navigation'
 import { connect } from 'react-redux'
 import SubmitButton from './SubmitButton'
@@ -24,17 +25,25 @@ class AddDeck extends Component {
     }
 
     submit = () => {
-  
+
         const newDeckTitle = this.state.deckTitle;
-        this.props.dispatch(addDeck({title: newDeckTitle, questions:[]}));
-         this.toHome()
-         saveDeckTitle(newDeckTitle)
-         this.setState(() => ({ deckTitle: '' }))
+        if (newDeckTitle.trim().length == 0) {
+            Alert.alert(
+                'Cannot create new Deck',
+                'Please provide a Deck-Name!'
+            )
+
+        } else {
+            this.props.dispatch(addDeck({ title: newDeckTitle, questions: [] }));
+            this.toHome()
+            saveDeckTitle(newDeckTitle)
+            this.setState(() => ({ deckTitle: '' }))
+        }
     }
 
     toHome = () => {
-        this.props.navigation.dispatch(NavigationActions.back({key: 'AddDeck'}))
-      }
+        this.props.navigation.dispatch(NavigationActions.back({ key: 'AddDeck' }))
+    }
 
     render() {
         return (
@@ -43,14 +52,14 @@ class AddDeck extends Component {
             }}>
                 <Text>What is the title of your new Deck?</Text>
                 <TextInput
-                     value={this.state.deckTitle}
-                    onChangeText={(deckTitle) => this.setState({deckTitle})}
+                    value={this.state.deckTitle}
+                    onChangeText={(deckTitle) => this.setState({ deckTitle })}
                     style={{
-                    height: 40
-               
-                }}
-                    placeholder="Deck Title"/>
-                <SubmitButton onPress={this.submit}/>
+                        height: 40
+
+                    }}
+                    placeholder="Deck Title" />
+                <SubmitButton onPress={this.submit} />
             </View>
         )
     }
@@ -59,14 +68,14 @@ class AddDeck extends Component {
 
 
 
-function mapStateToProps (state) {
-    
-  
+function mapStateToProps(state) {
+
+
     return {
         state
     }
-  }
-  
-  export default connect(
+}
+
+export default connect(
     mapStateToProps
-  )(AddDeck)
+)(AddDeck)
