@@ -35,14 +35,26 @@ class AddDeck extends Component {
 
         } else {
             this.props.addDeck({ title: newDeckTitle, questions: [] });
-            this.toHome()
+            this.toDeckDetail(newDeckTitle)
             saveDeckTitle(newDeckTitle)
             this.setState(() => ({ deckTitle: '' }))
         }
     }
 
-    toHome = () => {
-        this.props.navigation.dispatch(NavigationActions.back({ key: 'AddDeck' }))
+    toDeckDetail = (newDeckTitle) => {
+
+        const resetAction = NavigationActions.reset({
+            index: 0,
+            actions: [
+              NavigationActions.navigate({ routeName: 'Home'}),
+            ]
+          })
+          this.props.navigation.dispatch(resetAction)
+          
+        this.props.navigation.navigate(
+            'DeckDetail',
+            { deckKey: newDeckTitle }
+          )
     }
 
     render() {
