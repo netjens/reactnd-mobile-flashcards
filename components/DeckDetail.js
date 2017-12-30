@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
-import { white,purple } from '../utils/colors'
+import { white,purple, lightGray } from '../utils/colors'
 
 
 
@@ -18,7 +18,7 @@ class DeckDetail extends Component {
         const deck = this.props.deck;
         return (
             <View style={{
-                backgroundColor: '#f4f4f4', flex: 1,
+                backgroundColor: lightGray, flex: 1,
                 flexDirection: 'column',
                 justifyContent: 'flex-start'
             }}>

@@ -5,7 +5,7 @@ import AddDeck from './components/AddDeck'
 import DeckDetail from './components/DeckDetail'
 import AddCard from './components/AddCard';
 import {Platform} from 'react-native'
-import {purple, white} from './utils/colors'
+import {purple, white,grayShadow} from './utils/colors'
 import Quiz from './components/Quiz';
 
  const TabNavi = TabNavigator({
@@ -36,7 +36,7 @@ import Quiz from './components/Quiz';
         backgroundColor: Platform.OS === 'ios'
           ? white
           : purple,
-        shadowColor: 'rgba(0, 0, 0, 0.24)',
+        shadowColor:grayShadow ,
         shadowOffset: {
           width: 0,
           height: 3

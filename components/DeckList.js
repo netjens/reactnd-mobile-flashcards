@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, Platform,TouchableOpacity } from 'react-native'
 import { getDecks } from '../utils/api'
-import { white } from '../utils/colors'
+import { white,grayShadow,lightGray } from '../utils/colors'
 import { connect } from 'react-redux'
 import { addDecks } from '../actions'
 
@@ -20,7 +20,7 @@ class DeckList extends Component {
   render() {
     return (
       <View style={{
-        backgroundColor: '#f4f4f4', flex: 1,
+        backgroundColor: lightGray, flex: 1,
         flexDirection: 'column',
         justifyContent: 'flex-start'
       }}>
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     shadowRadius: 3,
     shadowOpacity: 0.8,
-    shadowColor: 'rgba(0, 0, 0, 0.24)',
+    shadowColor: grayShadow,
     shadowOffset: {
       width: 0,
       height: 3
