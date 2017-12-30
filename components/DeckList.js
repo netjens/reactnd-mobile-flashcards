@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, Platform,TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, Platform, TouchableOpacity } from 'react-native'
 import { getDecks } from '../utils/api'
-import { white,grayShadow,lightGray } from '../utils/colors'
+import { white, grayShadow, lightGray } from '../utils/colors'
 import { connect } from 'react-redux'
 import { addDecks } from '../actions'
 
@@ -10,10 +10,10 @@ class DeckList extends Component {
 
 
   componentDidMount() {
-    getDecks().then((decks)=> {
-        console.log("decks=" + JSON.stringify(decks));
-        this.props.dispatch(addDecks(decks));
-  
+    getDecks().then((decks) => {
+      console.log("decks=" + JSON.stringify(decks));
+      this.props.dispatch(addDecks(decks));
+
     });
   }
 
@@ -32,16 +32,16 @@ class DeckList extends Component {
 
             return (
               <View key={deckKey} style={styles.deck}>
-              <TouchableOpacity onPress={() => this.props.navigation.navigate(
-                'DeckDetail',
-                { deckKey: deckKey }
-              )}>
-               
+                <TouchableOpacity onPress={() => this.props.navigation.navigate(
+                  'DeckDetail',
+                  { deckKey: deckKey }
+                )}>
+
 
                   <Text style={{ textAlign: 'center', fontWeight: 'bold' }}>{deck.title}</Text>
                   <Text style={{ textAlign: 'center' }}>{deck.questions.length} cards</Text>
-              </TouchableOpacity>
-                </View>
+                </TouchableOpacity>
+              </View>
             )
           })}
       </View>
@@ -71,11 +71,8 @@ const styles = StyleSheet.create({
 });
 
 
-function mapStateToProps(state) {
-  return {
-    decks: state
-  }
-}
+const mapStateToProps = decks => ({ decks });
+
 
 export default connect(
   mapStateToProps,
