@@ -36,7 +36,7 @@ class AddCard extends Component {
                 'Please provide a Question and Answer!'
             )
         } else {
-            this.props.dispatch(addCard(deckKey, card));
+            this.props.addCard(deckKey, card);
             saveCardToDeck(deckKey, card);
             this.setState(() => ({ question: '', answer: '' }))
         }
@@ -76,16 +76,6 @@ class AddCard extends Component {
 }
 
 
-
-
-function mapStateToProps(state) {
-
-
-    return {
-        state
-    }
-}
-
 export default connect(
-    mapStateToProps
+    null,{addCard}
 )(AddCard)

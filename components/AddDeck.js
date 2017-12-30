@@ -34,7 +34,7 @@ class AddDeck extends Component {
             )
 
         } else {
-            this.props.dispatch(addDeck({ title: newDeckTitle, questions: [] }));
+            this.props.addDeck({ title: newDeckTitle, questions: [] });
             this.toHome()
             saveDeckTitle(newDeckTitle)
             this.setState(() => ({ deckTitle: '' }))
@@ -68,14 +68,6 @@ class AddDeck extends Component {
 
 
 
-function mapStateToProps(state) {
 
 
-    return {
-        state
-    }
-}
-
-export default connect(
-    mapStateToProps
-)(AddDeck)
+export default connect(null, { addDeck })(AddDeck);
