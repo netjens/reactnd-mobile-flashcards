@@ -16,6 +16,7 @@ import { connect } from 'react-redux'
 import TextButton from './TextButton'
 import Button from './Button'
 import { Entypo } from '@expo/vector-icons'
+import { clearLocalNotification,setLocalNotification } from '../utils/notification'
 
 
 class Quiz extends Component {
@@ -42,7 +43,10 @@ class Quiz extends Component {
 
         const emojiName = (percentage >= 80) ? 'emoji-happy' :
             (percentage >= 50) ? 'emoji-neutral' : 'emoji-sad';
-
+        if (percentage == 100) {
+            clearLocalNotification()
+                .then(setLocalNotification)
+        }
         return (
             currentIndex < deck.questions.length ?
                 <FlipView style={{ flex: 1 }}
@@ -60,7 +64,7 @@ class Quiz extends Component {
                         color={purple}
                     />
                     <Text style={{ fontSize: 30 }}>Your score: {percentage}%</Text>
-                    <Button style={{ backgroundColor: purple,marginTop: 30 }} onPress={this.restartQuiz}>Restart Quiz</Button>
+                    <Button style={{ backgroundColor: purple, marginTop: 30 }} onPress={this.restartQuiz}>Restart Quiz</Button>
                 </View>
         )
     }

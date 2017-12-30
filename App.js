@@ -1,13 +1,14 @@
 import React from 'react';
-import {StyleSheet, View, StatusBar} from 'react-native';
-import {createStore} from 'redux'
-import {Provider} from 'react-redux'
+import { StyleSheet, View, StatusBar } from 'react-native';
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
 import reducer from './reducers'
-import {purple, white} from './utils/colors'
-import {Constants} from 'expo'
+import { purple, white } from './utils/colors'
+import { Constants } from 'expo'
+import { setLocalNotification } from './utils/notification'
 
 
-import {MainNavigator} from './navigation'
+import { MainNavigator } from './navigation'
 
 export default class App extends React.Component {
   render() {
@@ -16,13 +17,17 @@ export default class App extends React.Component {
         <View style={{
           flex: 1
         }}>
-          <UdaciStatusBar backgroundColor={purple} barStyle="light-content"/>
-          <MainNavigator/>
+          <UdaciStatusBar backgroundColor={purple} barStyle="light-content" />
+          <MainNavigator />
         </View>
       </Provider>
     );
   }
+  componentDidMount(){
+    setLocalNotification()
+  }
 }
+
 
 
 function UdaciStatusBar({
@@ -32,10 +37,10 @@ function UdaciStatusBar({
   return (
     <View
       style={{
-      backgroundColor,
-      height: Constants.statusBarHeight
-    }}>
-      <StatusBar translucent backgroundColor={backgroundColor} {...props}/>
+        backgroundColor,
+        height: Constants.statusBarHeight
+      }}>
+      <StatusBar translucent backgroundColor={backgroundColor} {...props} />
     </View>
   )
 }
