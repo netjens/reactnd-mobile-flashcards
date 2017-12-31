@@ -1,17 +1,17 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
-import { white,purple, lightGray } from '../utils/colors'
-
+import { white, purple, lightGray } from '../utils/colors'
+import { clearLocalNotification, setLocalNotification } from '../utils/notification'
 
 
 class DeckDetail extends Component {
 
     static navigationOptions = ({ navigation }) => {
         return {
-          title: navigation.state.params.deckKey
+            title: navigation.state.params.deckKey
         }
-      }
+    }
 
 
     render() {
@@ -25,16 +25,23 @@ class DeckDetail extends Component {
 
                 <Text style={styles.title}>{deck.title}</Text>
                 <Text style={styles.subTitle}>{deck.questions.length} cards</Text>
-                <View style={{ flex: 1, justifyContent: 'flex-end', alignItems: 'center'}}> 
+                <View style={{ flex: 1, justifyContent: 'flex-end', alignItems: 'center' }}>
                     <TouchableOpacity
                         style={styles.button}
-                        onPress={() => this.props.navigation.navigate('AddCard',{deckKey: deck.title})}>
+                        onPress={() => this.props.navigation.navigate('AddCard', { deckKey: deck.title })}>
                         <Text style={styles.buttonText}>Add Card</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
-                        disabled={deck.questions.length==0}
-                        style={deck.questions.length==0 ? styles.buttonDisabled : styles.button}
-                        onPress={() => this.props.navigation.navigate('Quiz',{deckKey: deck.title})}>
+                        disabled={deck.questions.length == 0}
+                        style={deck.questions.length == 0 ? styles.buttonDisabled : styles.button}
+                        onPress={() => {
+                            this.props.navigation.navigate('Quiz', { deckKey: deck.title });
+            
+                            clearLocalNotification().then(setLocalNotification());
+                        }
+                        }
+
+                    >
                         <Text style={styles.buttonText}>Start Quiz</Text>
                     </TouchableOpacity>
 
@@ -69,7 +76,7 @@ const styles = StyleSheet.create({
         paddingRight: 30,
         height: 45,
         borderRadius: 5,
-    },  
+    },
     buttonDisabled: {
 
         backgroundColor: 'gray',
@@ -79,12 +86,12 @@ const styles = StyleSheet.create({
         paddingRight: 30,
         height: 45,
         borderRadius: 5,
-    }, 
+    },
     buttonText: {
         color: white,
         fontSize: 22,
         textAlign: 'center',
-      }
+    }
 }
 );
 

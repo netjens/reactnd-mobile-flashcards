@@ -23,8 +23,8 @@ export default class App extends React.Component {
       </Provider>
     );
   }
-  componentDidMount(){
-    setLocalNotification()
+  componentDidMount() {
+    setLocalNotification();
   }
 }
 
